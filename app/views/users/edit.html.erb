@@ -1,0 +1,56 @@
+<div class="containe">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">User info</font>
+        </font>
+      </h2>
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+         <ul>
+           <% @user.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+           <% end %>
+          </ul>
+     <% end %>
+      <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <div class="field_with_errors">
+            <label for="user_name">
+              <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">Name</font>
+              </font>
+            </label>
+          </div>
+          <div class="field_with_errors">
+            <%= f.text_field :name, autofocus: true, id:"inputName", class:"form-control name" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputImage">
+            <font style="vertical-align: inherit;">
+              <font style="vertical-align: inherit;">ProfileImage</font>
+            </font>
+          </label>
+          <%= f.file_field :profile_image, accept: "image/*", class:"form-control-file user_image"%>
+        </div>
+        <div class="form-group">
+          <label for="inputIntroduction">
+            <font style="vertical-align: inherit;">
+              <font style="vertical-align: inherit;">Introduction</font>
+            </font>
+          </label>
+          <%= f.text_area :introduction, id:"inputIntroduction", class:"form-control introduction" %>
+        </div>
+        <div class="form-group">
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">
+              <%= f.submit "Update User", class:"btn btn-secondary" %>
+            </font>
+          </font>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

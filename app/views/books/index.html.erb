@@ -1,0 +1,21 @@
+<div class="container px-5 px-sm-0">
+ <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+ <% end %>
+ 
+   <div class="row">
+   <div class="col-md-3">
+     <%= render 'users/userinfo', user: @userinfo %>
+     <%= render 'newbook', book: @book %>
+   </div>
+
+   <div class="col-md-8 offset-md-1">
+     <%= render 'booklist',books: @books %>
+   </div>
+  </div>
+</div>

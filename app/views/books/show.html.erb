@@ -1,0 +1,35 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+   <div class="col-md-3">
+     <%= render 'users/userinfo', user: @userinfo %>
+     <%= render 'newbook', book: @booknew %>
+   </div>
+
+   <div class="col-md-8 offset-md-1">
+    <h1>Book Detail</h1>
+      <table class="table">
+        <tbody>
+         <tr>
+           <td>
+               <%= image_tag @book.user.get_profile_image(80,80) %>
+               <br><%=link_to user_path(@book.user_id) do%>
+                     <%= @book.user.name %>
+                   <% end %>
+           </td>
+           <td><%= @book.title %></td>
+           <td><%= @book.body %></td>
+           <td><% if @book.user == current_user %>
+               <%= link_to "Edit", edit_book_path(@book), class:"btn btn-sm btn-success" %>
+               <% end %>
+           </td>
+           <td><% if @book.user == current_user %>
+               <%= link_to "Destroy",@book, method: :delete, class:"btn btn-sm btn-danger", "data-confirm"=>"Are you sure?" %>
+               <% end %>
+           </td>
+         </tr>
+        </tbody>
+       </table>
+   </div>
+  </div>
+</div>
+
